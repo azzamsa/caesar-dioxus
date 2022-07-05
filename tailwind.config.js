@@ -1,7 +1,3 @@
 module.exports = {
-    content: [
-        "./src/**/*.rs",
-        "./index.html",
-        "./styles/**/*.scss",
-    ],
-};
+  content: ["./src/**/*.rs", "./index.html", "./styles/**/*.scss"],
+}

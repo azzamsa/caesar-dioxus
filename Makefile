@@ -23,6 +23,7 @@ preview-build: ## Preview the build output.
 
 fmt: ## Format the codebase.
 	cargo fmt
+	prettier --config prettier.config.js --ignore-path .prettierignore --write .
 
 fmt_check: ## Check is the codebase properly formatted.
 	cargo fmt --check
