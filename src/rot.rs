@@ -38,7 +38,7 @@ fn get_letter_position(letter: u8) -> u8 {
 /// value
 ///
 /// ```
-/// use crabtail_dioxus::rot::{rot13_letter, Mode};
+/// use caesar::rot::{rot13_letter, Mode};
 ///
 /// let input = b'a';
 /// let result = b'n';
@@ -71,7 +71,7 @@ pub fn rot13_letter(mode: Mode, letter: u8) -> u8 {
 /// Transform any input to rot13
 ///
 /// ```
-/// use crabtail_dioxus::rot::{rot13, Mode};
+/// use caesar::rot::{rot13, Mode};
 ///
 /// let input = b"Hello, World!";
 /// let result = b"Uryyb, Jbeyq!";
@@ -96,7 +96,6 @@ pub fn rot13(mode: Mode, inputs: &[u8]) -> Vec<u8> {
         })
         .collect()
 }
-
 
 #[cfg(test)]
 mod tests {

@@ -1,3 +1,3 @@
-# CrabTail
+# ROT13 Dioxus
 
-Convert your TailwindCSS 💨 class to typed Rust 🦀
+Encrypt and decrypt your secrets using ROT13 🔐
