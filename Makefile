@@ -10,7 +10,12 @@ clean: ## Clean build artifacts.
 	trunk clean
 
 dev: ## Develop the app.
+	pnpx tailwindcss --config tailwind.config.js --input styles/main.scss  --output styles/compiled.scss
 	trunk serve
+
+build: ## Build the app.
+	NODE_ENV=production pnpx tailwindcss --config tailwind.config.js --input styles/main.scss --output styles/compiled.scss
+	trunk build --release
 
 fmt: ## Format the codebase.
 	cargo fmt
