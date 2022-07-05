@@ -5,6 +5,7 @@ setup: ## Setup the repository.
 	rustup target add wasm32-unknown-unknown
 
 	trunk --version | cargo install trunk
+	microserver --version | cargo install microserver
 
 clean: ## Clean build artifacts.
 	trunk clean
@@ -16,6 +17,9 @@ dev: ## Develop the app.
 build: ## Build the app.
 	NODE_ENV=production pnpx tailwindcss --config tailwind.config.js --input styles/main.scss --output styles/compiled.scss
 	trunk build --release
+
+preview-build: ## Preview the build output.
+	microserver dist/
 
 fmt: ## Format the codebase.
 	cargo fmt
