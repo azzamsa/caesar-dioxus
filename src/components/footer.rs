@@ -10,7 +10,7 @@ pub fn footer(cx: Scope) -> Element {
                   target: "_blank",
                   "Support Me"
 
-                  i { class: "inline-block mx-1 w-4 h-4",
+                  i { class: "inline-block mx-1 pt-0.5 w-4 h-4",
                       icons::heart {}
                   }
               }
