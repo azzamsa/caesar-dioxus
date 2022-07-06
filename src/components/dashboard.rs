@@ -3,7 +3,7 @@ use dioxus::prelude::*;
 use crate::rot::{rot13, rot13_letter, Mode};
 
 #[derive(Clone, PartialEq)]
-struct SecretState {
+pub struct SecretState {
     input: String,
     output: String,
 }
