@@ -6,6 +6,7 @@ setup: ## Setup the repository.
 
 	trunk --version | cargo install trunk
 	microserver --version | cargo install microserver
+	git-cliff --version | cargo install git-cliff
 
 clean: ## Clean build artifacts.
 	trunk clean
@@ -38,6 +39,10 @@ test: ## Lint the codebase.
 comply: fmt lint test ## Tasks to make the code-base comply with the rules. Mostly used locally or in git hooks.
 
 check:  fmt_check lint test ## Check if the repository comply with the rules. Mostly used in CI.
+
+
+release:  ## Create a release
+	bash scripts/release.sh $(version)
 
 ##
 ## Misc

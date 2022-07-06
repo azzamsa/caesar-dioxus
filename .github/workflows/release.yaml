@@ -1,0 +1,59 @@
+name: relase
+
+on:
+  push:
+    tags:
+    - 'v[0-9]+.[0-9]+.[0-9]+'
+
+
+jobs:
+  publish:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: wasm32-unknown-unknown
+          override: true
+          profile: minimal
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.21.0
+
+      - name: Install global dependencies
+        run: |
+          pnpm add -g prettier netlify
+          cargo install trunk
+
+      - name: Install local JS dependencies
+        run: |
+          pnpm i
+
+      - name: Cache
+        uses: Swatinem/rust-cache@v1
+
+      - name: Show version information
+        shell: bash
+        run: |
+          gcc --version || true
+          rustup -V
+          rustup toolchain list
+          rustup default
+          cargo -V
+          rustc -V
+          prettier --version
+
+      - name: Run build
+        run: make build
+
+      - name: Deploy
+        run: |
+          netlify deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod --dir ./dist
