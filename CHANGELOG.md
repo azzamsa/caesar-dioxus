@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.1] - 2022-07-06
+## [1.0.5] - 2022-07-06
 
 ### Features
 - Favicon ([12a6fa1](12a6fa1dd4f552df6cb46f3da683e5b072cabe74))
