@@ -34,6 +34,19 @@ impl SecretState {
             format!("{}", String::from_utf8_lossy(&bytes_result))
         };
     }
+    fn decrypt(&mut self, output: String) {
+        let output_length = output.len();
+        let output_bytes = output.as_bytes();
+        self.output = output.clone();
+
+        self.input = if output_length == 1 {
+            let byte_result = rot13_letter(Mode::Decrypt, output_bytes[0]);
+            format!("{}", String::from_utf8_lossy(&[byte_result]))
+        } else {
+            let bytes_result = rot13(Mode::Decrypt, output_bytes);
+            format!("{}", String::from_utf8_lossy(&bytes_result))
+        };
+    }
 }
 
 pub fn dashboard(cx: Scope) -> Element {
@@ -66,7 +79,6 @@ pub fn input_textarea(cx: Scope<SecretProps>) -> Element {
                          placeholder: "me@casar.tld",
                          value: "{current_secret.input}",
                          oninput: move |e| {
-                              println!("{:?}", e);
                              secret.make_mut().encrypt(e.value.clone());
                          }
               }
@@ -86,6 +98,10 @@ pub fn output_textarea(cx: Scope<SecretProps>) -> Element {
               textarea { class: "input",
                          placeholder: "zr@pnfne.gyq",
                          value: "{current_secret.output}",
+                         oninput: move |e| {
+                             secret.make_mut().decrypt(e.value.clone());
+                         }
+
               }
             }
     ))
