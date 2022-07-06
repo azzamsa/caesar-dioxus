@@ -71,7 +71,8 @@ pub fn input_textarea(cx: Scope<SecretProps>) -> Element {
     let current_secret = secret.current();
 
     cx.render(rsx!(
-        div { class: "mb-6 pt-3 rounded bg-gray-20",
+        div { class: "mb-6 pt-3 rounded bg-gray-200",
+              id: "input",
               label { class: "input-label",
                       "Secret",
               },
@@ -91,7 +92,7 @@ pub fn output_textarea(cx: Scope<SecretProps>) -> Element {
     let current_secret = secret.current();
 
     cx.render(rsx!(
-        div { class: "mb-6 pt-3 rounded bg-gray-20",
+        div { class: "mb-6 pt-3 rounded bg-gray-200",
               label { class: "input-label",
                       "Encrypted",
               },
