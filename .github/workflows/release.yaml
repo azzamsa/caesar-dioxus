@@ -23,6 +23,13 @@ jobs:
           override: true
           profile: minimal
 
+      - name: Install Trunk
+        run: |
+          curl --location https://github.com/thedodd/trunk/releases/download/v0.16.0/trunk-x86_64-unknown-linux-gnu.tar.gz --output trunk.tar.gz
+          tar -xzf trunk.tar.gz
+          cp trunk ~/.cargo/bin/
+          trunk --version
+
       - name: Install pnpm
         uses: pnpm/action-setup@v2.0.1
         with:
@@ -31,7 +38,6 @@ jobs:
       - name: Install global dependencies
         run: |
           pnpm add -g prettier netlify
-          cargo install trunk
 
       - name: Install local JS dependencies
         run: |
@@ -49,7 +55,9 @@ jobs:
           rustup default
           cargo -V
           rustc -V
+
           prettier --version
+          trunk --version
 
       - name: Run build
         run: make build
