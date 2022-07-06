@@ -15,12 +15,6 @@ impl SecretState {
             output: "".to_string(),
         }
     }
-    fn current(self) -> Self {
-        Self {
-            input: self.input,
-            output: self.output,
-        }
-    }
     fn encrypt(&mut self, input: String) {
         let input_length = input.len();
         let input_bytes = input.as_bytes();
@@ -68,7 +62,6 @@ pub struct SecretProps {
 
 pub fn input_textarea(cx: Scope<SecretProps>) -> Element {
     let secret = &cx.props.secret;
-    let current_secret = secret.current();
 
     cx.render(rsx!(
         div { class: "mb-6 pt-3 rounded bg-gray-200",
@@ -78,7 +71,7 @@ pub fn input_textarea(cx: Scope<SecretProps>) -> Element {
               },
               textarea { class: "input",
                          placeholder: "me@casar.tld",
-                         value: "{current_secret.input}",
+                         value: "{secret.input}",
                          oninput: move |e| {
                              secret.make_mut().encrypt(e.value.clone());
                          }
@@ -89,7 +82,6 @@ pub fn input_textarea(cx: Scope<SecretProps>) -> Element {
 
 pub fn output_textarea(cx: Scope<SecretProps>) -> Element {
     let secret = &cx.props.secret;
-    let current_secret = secret.current();
 
     cx.render(rsx!(
         div { class: "mb-6 pt-3 rounded bg-gray-200",
@@ -98,7 +90,7 @@ pub fn output_textarea(cx: Scope<SecretProps>) -> Element {
               },
               textarea { class: "input",
                          placeholder: "zr@pnfne.gyq",
-                         value: "{current_secret.output}",
+                         value: "{secret.output}",
                          oninput: move |e| {
                              secret.make_mut().decrypt(e.value.clone());
                          }
