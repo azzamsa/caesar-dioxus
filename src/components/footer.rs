@@ -7,6 +7,7 @@ pub fn footer(cx: Scope) -> Element {
         section { class: "max-w-lg mx-auto flex justify-center text-white font-medium",
               a { class: "duration-500 transform hover:-translate-y-1 hover:scale-125 hover:underline",
                   href: "https://azzamsa.com/support/",
+                  target: "_blank",
                   "Support Me"
 
                   i { class: "inline-block mx-1 w-4 h-4",
@@ -17,7 +18,8 @@ pub fn footer(cx: Scope) -> Element {
                      "\u{2022}",
               }
               a { class: "hover:underline",
-                  href: "#",
+                  href: "https://github.com/azzamsa/caesar-dioxus",
+                  target: "_blank",
                   "Meta"
               }
         }
