@@ -1,6 +1,0 @@
-[hooks]
-pre-commit = "make comply"
-pre-push = "make check"
-
-[logging]
-verbose = true

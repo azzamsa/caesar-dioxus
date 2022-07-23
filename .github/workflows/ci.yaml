@@ -23,7 +23,8 @@ jobs:
       - name: Install rust toolchain
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          # nightly is only use for rustfmt
+          toolchain: nightly
           default: true
           profile: minimal # no documentation
           components: clippy, rustfmt
@@ -37,14 +38,15 @@ jobs:
         run: |
           pnpm add -g prettier
 
+      - name: Install dprint
+        run: |
+          curl --location https://github.com/dprint/dprint/releases/download/0.30.3/dprint-x86_64-unknown-linux-gnu.zip --output dprint.zip
+          unzip dprint.zip
+          cp dprint ~/.cargo/bin/
+          dprint --version
+
       - name: Cache
         uses: Swatinem/rust-cache@v1
-
-      - name: Ensure `cargo fmt` has been run
-        uses: actions-rs/cargo@v1
-        with:
-          command: fmt
-          args: -- --check
 
       - name: Ensure MSRV is set in `clippy.toml`
         run: grep "^msrv = \"${{ env.MIN_SUPPORTED_RUST_VERSION }}\"\$" clippy.toml

@@ -1,5 +1,6 @@
-use super::icons;
 use dioxus::prelude::*;
+
+use super::icons;
 
 pub fn banner(cx: Scope) -> Element {
     cx.render(rsx!(

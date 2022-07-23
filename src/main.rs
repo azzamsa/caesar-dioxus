@@ -4,7 +4,6 @@ mod components {
     pub mod footer;
     pub mod icons;
 }
-pub mod rot;
 
 use dioxus::prelude::*;
 

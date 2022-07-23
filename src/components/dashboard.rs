@@ -1,5 +1,4 @@
 use dioxus::prelude::*;
-
 use nrot::{rot, rot_letter, Mode};
 
 #[derive(Clone, PartialEq)]
