@@ -18,5 +18,4 @@ Encrypt and decrypt your secrets using ROT13 🔐
 
 ## Credits
 
-- ROT13 implementation is inspired by [Cameron Phillips's ROT13](https://github.com/cameronp98/rot13) 
-- [Noto Emoji](https://github.com/googlefonts/noto-emoji) 
+- [Noto Emoji](https://github.com/googlefonts/noto-emoji)

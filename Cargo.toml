@@ -5,6 +5,8 @@ edition = "2021"
 
 [dependencies]
 dioxus = { version = "0.2.3", features = ["web"] }
+nrot = "2.0.0"
 
 [dev-dependencies]
-rusty-hook = "^0.11.2"
+# git hooks
+cargo-husky = { version = "1", features = ["user-hooks"] }

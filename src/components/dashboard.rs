@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-use crate::rot::{rot13, rot13_letter, Mode};
+use nrot::{rot, rot_letter, Mode};
 
 #[derive(Clone, PartialEq)]
 pub struct SecretState {
@@ -16,28 +16,30 @@ impl SecretState {
         }
     }
     fn encrypt(&mut self, input: String) {
+        let rotation = 13;
         let input_length = input.len();
         let input_bytes = input.as_bytes();
         self.input = input.clone();
 
         self.output = if input_length == 1 {
-            let byte_result = rot13_letter(Mode::Encrypt, input_bytes[0]);
+            let byte_result = rot_letter(Mode::Encrypt, input_bytes[0], rotation);
             format!("{}", String::from_utf8_lossy(&[byte_result]))
         } else {
-            let bytes_result = rot13(Mode::Encrypt, input_bytes);
+            let bytes_result = rot(Mode::Encrypt, input_bytes, rotation);
             format!("{}", String::from_utf8_lossy(&bytes_result))
         };
     }
     fn decrypt(&mut self, output: String) {
+        let rotation = 13;
         let output_length = output.len();
         let output_bytes = output.as_bytes();
         self.output = output.clone();
 
         self.input = if output_length == 1 {
-            let byte_result = rot13_letter(Mode::Decrypt, output_bytes[0]);
+            let byte_result = rot_letter(Mode::Decrypt, output_bytes[0], rotation);
             format!("{}", String::from_utf8_lossy(&[byte_result]))
         } else {
-            let bytes_result = rot13(Mode::Decrypt, output_bytes);
+            let bytes_result = rot(Mode::Decrypt, output_bytes, rotation);
             format!("{}", String::from_utf8_lossy(&bytes_result))
         };
     }
